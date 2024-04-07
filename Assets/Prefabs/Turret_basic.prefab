@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6051377339998641262}
   - component: {fileID: 7076303662374321555}
+  - component: {fileID: 2976480590827084614}
   m_Layer: 0
   m_Name: TurretModel
   m_TagString: Untagged
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &2976480590827084614
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121144104270180541}
+  m_Enabled: 1
+  m_SortingLayerID: 1665963875
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2931541674834858338
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8912547671929338562}
   - component: {fileID: 4843581791825572372}
+  - component: {fileID: 5093419162885132590}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -201,6 +215,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &5093419162885132590
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426179485510267747}
+  m_Enabled: 1
+  m_SortingLayerID: -1814144683
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &4436814783097341742
 GameObject:
   m_ObjectHideFlags: 0
