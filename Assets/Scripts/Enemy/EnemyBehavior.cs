@@ -87,6 +87,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         ReturnToPool();
         if(OnDeath != null) OnDeath();
+        if(OnThisDeath != null) OnThisDeath();
     }
 
     private void UpdateWaypointIndex()

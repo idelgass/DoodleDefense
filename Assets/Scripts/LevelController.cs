@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LevelBehavior : MonoBehaviour
+public class LevelController : MonoBehaviour
 {
     [SerializeField] private int startingLife = 100;
 
