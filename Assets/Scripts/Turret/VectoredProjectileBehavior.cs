@@ -15,7 +15,7 @@ public class VectoredProjectileBehavior : ProjectileBehavior
         transform.Translate(moveVector);
     }
 
-    private void OnTriggerEnter2d(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("enemy"))
         {
