@@ -7,15 +7,24 @@ using UnityEngine;
 
 public class VectoredProjectileBehavior : ProjectileBehavior
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector2 Direction {get; set;}
+
+    protected override void MoveProjectile()
     {
-        
+        Vector2 moveVector = Direction.normalized * moveSpeed * Time.deltaTime;
+        transform.Translate(moveVector);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2d(Collider2D other)
     {
-        
+        if(other.CompareTag("enemy"))
+        {
+            EnemyBehavior enemy = other.GetComponent<EnemyBehavior>();
+            if(enemy.Health > 0f)
+            {
+                enemy.TakeDamage(damage);
+            }
+            ReturnToPool();
+        }
     }
 }

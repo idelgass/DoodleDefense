@@ -22,55 +22,21 @@ public class ProjectileEventArgs : EventArgs
     }
 }
 
-public class ProjectileBehavior : MonoBehaviour
+public abstract class ProjectileBehavior : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float damage;
-    [SerializeField] private float damageDistance;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float damage;
+    // [SerializeField] protected float damageDistance;
 
     // Set in ProjectileAttackBehavior
     public ProjectileAttackBehavior AttackOwner { get; set; }
     public static event EventHandler<ProjectileEventArgs> OnHit;
 
-    private EnemyBehavior targetEnemy;
-
-    private void RaiseOnHit(ProjectileEventArgs e)
-    {
-        if(OnHit != null) OnHit(this, e);
-    }
+    protected EnemyBehavior targetEnemy;
 
     public void SetTargetEnemy(EnemyBehavior enemy)
     {
         targetEnemy = enemy;
-    }
-
-    private void MoveProjectile()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, targetEnemy.transform.position,
-            moveSpeed * Time.deltaTime);
-        float distanceToTarget = (targetEnemy.transform.position - transform.position).magnitude;
-        // Testing, need to reset targetEnemy if enemy dies so that it isnt targeted by hanging projectiles on coming out of the enemy pool
-        if(!targetEnemy.gameObject.activeInHierarchy)
-        {
-            targetEnemy = null;
-            ReturnToPool();
-        }
-        else if(distanceToTarget < damageDistance)
-        {
-            // Will need to change this per TODO up top, but for now this will save me some headaches
-            // if(targetEnemy.gameObject.activeInHierarchy) 
-            targetEnemy.TakeDamage(damage);
-            if(OnHit != null) RaiseOnHit(new ProjectileEventArgs(damage, targetEnemy));
-            // AttackOwner.ResetAttack();
-            ReturnToPool();
-        }
-    }
-    
-    private void RotateProjectile()
-    {
-        Vector3 enemyPos = targetEnemy.transform.position - transform.position;
-        float angle = Vector3.SignedAngle(transform.up, enemyPos, transform.forward);
-        transform.Rotate(0f, 0f, angle);
     }
 
     public void ResetProjectile()
@@ -79,17 +45,23 @@ public class ProjectileBehavior : MonoBehaviour
         transform.localRotation = Quaternion.identity;
     }
 
-    private void ReturnToPool()
+    protected void RaiseOnHit(ProjectileEventArgs e)
+    {
+        if(OnHit != null) OnHit(this, e);
+    }
+
+    protected void ReturnToPool()
     {
         gameObject.SetActive(false);
     }
 
+    protected abstract void MoveProjectile();
 
-    private void Update()
+
+    protected virtual void Update()
     {
         if(targetEnemy != null)
         {
-            RotateProjectile();
             MoveProjectile();
         }
     }

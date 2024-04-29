@@ -365,6 +365,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4146473566433759648, guid: efa28851ffbdbe941a4f1e861dc1dad8, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 2146561041234396295, guid: 7f55a67c6b3cd4e06907ba62cf5f4bc0, type: 3}
     - target: {fileID: 4436814783097341742, guid: efa28851ffbdbe941a4f1e861dc1dad8, type: 3}
       propertyPath: m_Name
       value: Turret_mach
