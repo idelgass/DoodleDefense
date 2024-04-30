@@ -46,6 +46,17 @@ public class ObjectPooler : MonoBehaviour
         return CreateInstance();
     }
 
+    // public static void ReturnToPool(GameObject instance)
+    // {
+    //     instance.SetActive(false);
+    // }
+
+    // public static IEnumerator ReturnToPoolDelay(GameObject instance, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     instance.SetActive(false);
+    // }
+
     private void Awake()
     {
         pool = new List<GameObject>();

@@ -60,9 +60,6 @@ public abstract class ProjectileBehavior : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(targetEnemy != null)
-        {
-            MoveProjectile();
-        }
+        MoveProjectile();
     }
 }

@@ -7,7 +7,16 @@ using UnityEngine;
 
 public class VectoredProjectileBehavior : ProjectileBehavior
 {
-    private Vector2 Direction {get; set;}
+
+    [SerializeField] private float lifeTime;
+    
+    public Vector2 Direction {get; set;}
+
+    private IEnumerator DelayedReturnToPool()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        gameObject.SetActive(false);
+    }
 
     protected override void MoveProjectile()
     {
@@ -17,7 +26,7 @@ public class VectoredProjectileBehavior : ProjectileBehavior
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("enemy"))
+        if(other.CompareTag("Enemy"))
         {
             EnemyBehavior enemy = other.GetComponent<EnemyBehavior>();
             if(enemy.Health > 0f)
@@ -26,5 +35,10 @@ public class VectoredProjectileBehavior : ProjectileBehavior
             }
             ReturnToPool();
         }
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(DelayedReturnToPool());
     }
 }

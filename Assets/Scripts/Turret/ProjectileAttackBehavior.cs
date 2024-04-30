@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Feels weird not having this be abstract
+
 public class ProjectileAttackBehavior : MonoBehaviour
 {
-    [SerializeField] private Transform spawnPosition;
-    [SerializeField] private float attackDelay;
+    [SerializeField] protected Transform spawnPosition;
+    [SerializeField] protected float attackDelay;
 
-    private ObjectPooler pooler;
-    private TurretBehavior turret;
-    private ProjectileBehavior loadedProjectile;
-    private float attackTimer;
+    protected ObjectPooler pooler;
+    protected TurretBehavior turret;
+    protected ProjectileBehavior loadedProjectile;
+    protected float attackTimer;
 
-    private void SpawnProjectile()
+    protected virtual void SpawnProjectile()
     {
         GameObject newProjectile = pooler.GetInstFromPool();
         // position or local position on lhs?
@@ -35,14 +37,14 @@ public class ProjectileAttackBehavior : MonoBehaviour
 
 
 
-    private void Start()
+    protected void Start()
     {
         pooler = GetComponent<ObjectPooler>();
         turret = GetComponent<TurretBehavior>();
         attackTimer = 0f;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         attackTimer -= Time.deltaTime;
         if(attackTimer <= 0 && turret.targetEnemy != null
