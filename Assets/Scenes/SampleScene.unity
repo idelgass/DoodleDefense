@@ -537,7 +537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4278556078254887767, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.59
+      value: -14.76
       objectReference: {fileID: 0}
     - target: {fileID: 4278556078254887767, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
       propertyPath: m_LocalPosition.y
@@ -574,6 +574,26 @@ PrefabInstance:
     - target: {fileID: 4278556078254887767, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633952819211803147, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125246032440183090, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707858256563394077, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
+      propertyPath: hasSpread
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707858256563394077, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
+      propertyPath: attackDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707858256563394077, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
+      propertyPath: spreadAmount
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6260369314318515193, guid: 0f0ca55ba80ff4314b2dfc69fdb04885, type: 3}
       propertyPath: m_Name
