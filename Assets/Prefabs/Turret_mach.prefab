@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 5125246032440183090}
   - component: {fileID: 2786477139750736792}
   - component: {fileID: 5707858256563394077}
+  - component: {fileID: 615191618782972970}
   - component: {fileID: 4633952819211803147}
   m_Layer: 0
   m_Name: Turret_mach
@@ -305,8 +306,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 242218337415927171}
   attackDelay: 0.1
+  damage: 2
   hasSpread: 1
   spreadAmount: 15
+--- !u!114 &615191618782972970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6260369314318515193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211481e0c6a564bf0996be14d3d82dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCost: 5
+  costModifier: 2
+  damageIncrement: 2
+  delayReduce: 0.005
 --- !u!58 &4633952819211803147
 CircleCollider2D:
   m_ObjectHideFlags: 0

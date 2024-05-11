@@ -8,11 +8,15 @@ public class ProjectileAttackBehavior : MonoBehaviour
 {
     [SerializeField] protected Transform spawnPosition;
     [SerializeField] protected float attackDelay;
+    [SerializeField] protected float damage;
 
     protected ObjectPooler pooler;
     protected TurretBehavior turret;
-    protected ProjectileBehavior loadedProjectile;
+    protected ProjectileBehavior loadedProjectileBehavior;
     protected float attackTimer;
+
+    public float Damage { get; set; }
+    public float AttackDelay { get; set; }
 
     protected virtual void SpawnProjectile()
     {
@@ -22,9 +26,10 @@ public class ProjectileAttackBehavior : MonoBehaviour
         // Need projectile to rotate with turret
         newProjectile.transform.SetParent(spawnPosition);
 
-        loadedProjectile = newProjectile.GetComponent<ProjectileBehavior>();
-        loadedProjectile.AttackOwner = this;
-        loadedProjectile.ResetProjectile();
+        loadedProjectileBehavior = newProjectile.GetComponent<ProjectileBehavior>();
+        loadedProjectileBehavior.AttackOwner = this;
+        loadedProjectileBehavior.ResetProjectile();
+        loadedProjectileBehavior.Damage = damage;
         
         newProjectile.SetActive(true);
     }
@@ -42,21 +47,23 @@ public class ProjectileAttackBehavior : MonoBehaviour
         pooler = GetComponent<ObjectPooler>();
         turret = GetComponent<TurretBehavior>();
         attackTimer = 0f;
+        Damage = damage;
+        AttackDelay = attackDelay;
     }
 
     protected virtual void Update()
     {
         attackTimer -= Time.deltaTime;
         if(attackTimer <= 0 && turret.targetEnemy != null
-            && turret.targetEnemy.Health > 0f && loadedProjectile == null)
+            && turret.targetEnemy.Health > 0f && loadedProjectileBehavior == null)
         {
-            attackTimer = attackDelay;
+            attackTimer = AttackDelay;
             SpawnProjectile();
             // if (loadedProjectile == null) SpawnProjectile();
             // Releasing projectile from its parent
-            loadedProjectile.transform.parent = null;
-            loadedProjectile.SetTargetEnemy(turret.targetEnemy);
-            loadedProjectile = null;
+            loadedProjectileBehavior.transform.parent = null;
+            loadedProjectileBehavior.SetTargetEnemy(turret.targetEnemy);
+            loadedProjectileBehavior = null;
         }
 
         

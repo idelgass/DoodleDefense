@@ -11,10 +11,10 @@ public class VectoredAttackBehavior : ProjectileAttackBehavior
     [SerializeField] private bool hasSpread;
     [SerializeField] private float spreadAmount;
 
-    protected override void SpawnProjectile()
-    {
+    // protected override void SpawnProjectile()
+    // {
 
-    }
+    // }
 
     private void FireProjectile(Vector3 direction)
     {
@@ -23,6 +23,7 @@ public class VectoredAttackBehavior : ProjectileAttackBehavior
 
         VectoredProjectileBehavior vectoredProjectileBehavior = projectile.GetComponent<VectoredProjectileBehavior>();
         vectoredProjectileBehavior.Direction = direction;
+        vectoredProjectileBehavior.Damage = Damage;
 
         if(hasSpread)
         {
@@ -31,7 +32,6 @@ public class VectoredAttackBehavior : ProjectileAttackBehavior
             Quaternion spreadRot = Quaternion.Euler(spread);
             Vector2 spreadDirection = spreadRot * direction;
             vectoredProjectileBehavior.Direction = spreadDirection;
-
         }
 
         projectile.SetActive(true);
@@ -41,9 +41,9 @@ public class VectoredAttackBehavior : ProjectileAttackBehavior
     {
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0 && turret.targetEnemy != null
-            && turret.targetEnemy.Health > 0f && loadedProjectile == null)
+            && turret.targetEnemy.Health > 0f && loadedProjectileBehavior == null)
         {
-            attackTimer = attackDelay;
+            attackTimer = AttackDelay;
             Vector3 targetDirection = turret.targetEnemy.transform.position - transform.position;
             FireProjectile(targetDirection);
         }

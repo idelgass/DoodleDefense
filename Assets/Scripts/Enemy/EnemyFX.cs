@@ -14,11 +14,11 @@ public class EnemyFX : MonoBehaviour
 
     private void EnemyHit(object sender, ProjectileEventArgs e)
     {
-        if(enemy == e.targetEnemy)
+        if(enemy == e.TargetEnemy)
         {
             GameObject damageTextBehavior = DamageTextController.Instance.Pooler.GetInstFromPool();
             TextMeshProUGUI damageTextMesh = damageTextBehavior.GetComponent<DamageTextBehavior>().DmgTextMesh;
-            damageTextMesh.text = e.damage.ToString();
+            damageTextMesh.text = e.Damage.ToString();
 
             // Set text to follow enemy
             damageTextBehavior.transform.SetParent(damageTextPos);

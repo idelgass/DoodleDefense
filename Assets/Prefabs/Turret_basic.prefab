@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 3236604898746521797}
   - component: {fileID: 4146473566433759648}
   - component: {fileID: 535843328358807455}
+  - component: {fileID: 6169179532711167878}
   - component: {fileID: 770804519651044231}
   m_Layer: 0
   m_Name: Turret_basic
@@ -305,6 +306,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1005667240966413391}
   attackDelay: 0.25
+  damage: 2
+--- !u!114 &6169179532711167878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436814783097341742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211481e0c6a564bf0996be14d3d82dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCost: 10
+  costModifier: 2
+  damageIncrement: 2
+  delayReduce: 0.01
 --- !u!58 &770804519651044231
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -23,8 +23,8 @@ public class SeekingProjectileBehavior : ProjectileBehavior
         {
             // Will need to change this per TODO up top, but for now this will save me some headaches
             // if(targetEnemy.gameObject.activeInHierarchy) 
-            targetEnemy.TakeDamage(damage);
-            RaiseOnHit(new ProjectileEventArgs(damage, targetEnemy));
+            targetEnemy.TakeDamage(Damage);
+            RaiseOnHit(new ProjectileEventArgs(Damage, targetEnemy));
             // AttackOwner.ResetAttack();
             ReturnToPool();
         }

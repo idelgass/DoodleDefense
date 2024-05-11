@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Keeping this around in case ProjectileAttackBehavior becomes abstract
+// NOTE: FOLLOWING CODE IS !NOT! UP TO DATE
 
 public class SeekingAttackBehavior : ProjectileAttackBehavior
 {

@@ -13,20 +13,22 @@ using UnityEngine;
 
 public class ProjectileEventArgs : EventArgs
 {
-    public float damage {get;}
-    public EnemyBehavior targetEnemy {get;}
-    public ProjectileEventArgs(float damage, EnemyBehavior targetEnemy)
+    public float Damage {get;}
+    public EnemyBehavior TargetEnemy {get;}
+    public ProjectileEventArgs(float Damage, EnemyBehavior TargetEnemy)
     {
-        this.damage = damage;
-        this.targetEnemy = targetEnemy;
+        this.Damage = Damage;
+        this.TargetEnemy = TargetEnemy;
     }
 }
 
 public abstract class ProjectileBehavior : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed;
-    [SerializeField] protected float damage;
+    // [SerializeField] protected float damage;
     // [SerializeField] protected float damageDistance;
+
+    public float Damage { get; set; }
 
     // Set in ProjectileAttackBehavior
     public ProjectileAttackBehavior AttackOwner { get; set; }

@@ -31,8 +31,8 @@ public class VectoredProjectileBehavior : ProjectileBehavior
             EnemyBehavior enemy = other.GetComponent<EnemyBehavior>();
             if(enemy.Health > 0f)
             {
-                enemy.TakeDamage(damage);
-                RaiseOnHit(new ProjectileEventArgs(damage, enemy));
+                enemy.TakeDamage(Damage);
+                RaiseOnHit(new ProjectileEventArgs(Damage, enemy));
             }
             ReturnToPool();
         }
