@@ -15,6 +15,11 @@ public class CurrencyController : SingletonMonoBehavior<CurrencyController>
         TotalCoins += amountToAdd;
     }
 
+    private void AddCoinsOnKill(object sender, EnemyEventArgs e)
+    {
+        TotalCoins += e.Enemy.Coins;
+    }
+
     public void RemoveCoins(int amountToRemove)
     {
         // Will want to check whether player can afford anything before purchasing, so technically
@@ -26,5 +31,15 @@ public class CurrencyController : SingletonMonoBehavior<CurrencyController>
     private void Start()
     {
         TotalCoins = initialCoins;
+    }
+
+    private void OnEnable()
+    {
+        EnemyBehavior.OnDeath += AddCoinsOnKill;
+    }
+
+    private void OnDisable()
+    {
+        EnemyBehavior.OnDeath -= AddCoinsOnKill;
     }
 }

@@ -28,10 +28,6 @@ public class UpgradeBehavior : MonoBehaviour
         }
     }
 
-    private void AddCoinsOnKill()
-    {
-        
-    }
 
     private void Start()
     {
@@ -39,15 +35,6 @@ public class UpgradeBehavior : MonoBehaviour
         UpgradeCost = initialCost;
     }
 
-    private void OnEnable()
-    {
-        EnemyBehavior.OnDeath += AddCoinsOnKill;
-    }
-
-    private void OnDisable()
-    {
-        EnemyBehavior.OnDeath -= AddCoinsOnKill;
-    }
 
     private void Update()
     {

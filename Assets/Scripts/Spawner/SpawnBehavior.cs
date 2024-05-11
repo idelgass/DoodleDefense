@@ -42,7 +42,7 @@ public class SpawnBehavior : MonoBehaviour
         enemiesSpawned = 0;
     }
 
-    private void RecordEnemy()
+    private void RecordEnemy(object sender, EnemyEventArgs e)
     {
         enemiesRemaining--;
         if (enemiesRemaining <= 0)

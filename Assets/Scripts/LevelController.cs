@@ -10,9 +10,9 @@ public class LevelController : MonoBehaviour
 
     public int Life {get; set;}
 
-    public void ReduceLives()
+    public void ReduceLives(object sender, EnemyEventArgs e)
     {
-        Life--;
+        Life -= e.Enemy.Lives;
         if(Life <= 0)
         {
             Life = 0;

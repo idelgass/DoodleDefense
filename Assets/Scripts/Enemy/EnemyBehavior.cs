@@ -1,8 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.Events;
+
+public class EnemyEventArgs : EventArgs
+{
+    public EnemyBehavior Enemy { get; }
+
+    public EnemyEventArgs(EnemyBehavior enemyBehavior)
+    {
+        Enemy = enemyBehavior;
+    }
+}
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -10,19 +21,21 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
+    [SerializeField] private int coins;
+    [SerializeField] private int lives;
 
     [Header("Healthbar")]
     [SerializeField] private GameObject healthbarPrefab;
     [SerializeField] private Transform barTransform;
 
     // Set in SpawnBehavior
-    public PathBehavior PathBehavior {get; set;}    
+    public PathBehavior PathBehavior {get; set;}
+    public int Coins => coins;
+    public int Lives => lives;     
     public Vector3 CurrPointPos => PathBehavior.GetWaypointPos(waypointIndex);
     public float Health => health;
-    public delegate void EnemyEvent();
-    public static event EnemyEvent OnEndReached;
-    public static event EnemyEvent OnDeath;
-    public event EnemyEvent OnThisDeath;
+    public static event EventHandler<EnemyEventArgs> OnDeath;
+    public static event EventHandler<EnemyEventArgs> OnEndReached;
     private HealthbarBehavior healthbarBehavior;
     // public UnityEvent OnEndReached;
     
@@ -86,8 +99,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Die()
     {
         ReturnToPool();
-        OnDeath?.Invoke(); // Null check before invoking
-        OnThisDeath?.Invoke();
+        OnDeath?.Invoke(this, new EnemyEventArgs(this)); // Null check before invoking
     }
 
     private void UpdateWaypointIndex()
@@ -98,8 +110,8 @@ public class EnemyBehavior : MonoBehaviour
         }
         else
         {
-            // OnEndReached?.Invoke();
-            if(OnEndReached != null) OnEndReached();
+            // if(OnEndReached != null) OnEndReached();
+            OnEndReached?.Invoke(this, new EnemyEventArgs(this)); 
             ReturnToPool();
         }
     }

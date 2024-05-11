@@ -49,7 +49,7 @@ public abstract class ProjectileBehavior : MonoBehaviour
 
     protected void RaiseOnHit(ProjectileEventArgs e)
     {
-        if(OnHit != null) OnHit(this, e);
+        OnHit?.Invoke(this, e);
     }
 
     protected void ReturnToPool()
