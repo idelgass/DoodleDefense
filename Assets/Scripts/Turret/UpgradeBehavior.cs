@@ -14,6 +14,11 @@ public class UpgradeBehavior : MonoBehaviour
 
     private ProjectileAttackBehavior projectileAttackBehavior;
 
+    public void TurretClick()
+    {
+        UIController.Instance.OpenUpgrade();
+    }
+
     private void UpgradeTurret()
     {
         if(CurrencyController.Instance.TotalCoins >= UpgradeCost)

@@ -74,7 +74,7 @@ public class EnemyBehavior : MonoBehaviour
     private bool WayPointReached()
     {
         float distToNextPoint = (transform.position - CurrPointPos).magnitude;
-        if(distToNextPoint < 0.1f)
+        if(distToNextPoint < 0.01f)
         {
             return true;
         }
