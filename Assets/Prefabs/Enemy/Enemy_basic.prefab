@@ -134,9 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  maxHealth: 10
+  maxHealth: 5
   health: 0
-  coins: 5
+  coins: 2
   lives: 1
   healthbarPrefab: {fileID: 6632016790721769747, guid: 2c372bae6fba8a94d9f441753bd11713, type: 3}
   barTransform: {fileID: 3717827012021428889}

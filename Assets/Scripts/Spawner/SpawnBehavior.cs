@@ -11,19 +11,38 @@ public enum SpawnModes
 public class SpawnBehavior : MonoBehaviour
 {
     [SerializeField] private SpawnModes spawnMode = SpawnModes.Standard;
-    [SerializeField] private GameObject testEnemy;
+    // [SerializeField] private GameObject testEnemy;
     [SerializeField] private float spawnInterval;
     [SerializeField] private int waveSize;
-    [SerializeField] private float waveInterval;
+
+    [Header("Enemy Type Settings")]
+    [SerializeField] private int mediumSpawnThreshold; 
+    [SerializeField] private int heavySpawnThreshold;
+    [SerializeField] private ObjectPooler basicPooler;
+    [SerializeField] private ObjectPooler medPooler;
+    [SerializeField] private ObjectPooler heavyPooler;
+
+    
 
     private float spawnTimer;
     private int enemiesRemaining;
     private int enemiesSpawned;
-    private ObjectPooler pooler;
+    private ObjectPooler activePooler;
     private PathBehavior pathBehavior;
 
+    private int[] waveSizes = new int[]
+    {
+        50, // Default
+        5, 10, 15, 20,
+        5, 10, 15, 20,
+        5, 10, 15, 20,
+    };
+    
+
     private void SpawnEnemy(){
-        GameObject newEnemy = pooler.GetInstFromPool();
+        if(LevelController.Instance.WaveNumber >= mediumSpawnThreshold) activePooler = medPooler;
+        if(LevelController.Instance.WaveNumber >= heavySpawnThreshold) activePooler = heavyPooler;
+        GameObject newEnemy = activePooler.GetInstFromPool();
         // Get reference to EnemyBehavior script on the specific enemy being taken from pool
         // Use this to set enemy's path to the ref stored on this game obj
         EnemyBehavior newEnemyBehavior = newEnemy.GetComponent<EnemyBehavior>();
@@ -34,12 +53,24 @@ public class SpawnBehavior : MonoBehaviour
         newEnemy.SetActive(true);
     }
 
-    private IEnumerator NextWave()
+    public void NextWave()
     {
-        yield return new WaitForSeconds(waveInterval);
+        if(LevelController.Instance.WaveNumber < waveSizes.Length)
+        {
+            waveSize = waveSizes[LevelController.Instance.WaveNumber];
+        }
+        else
+        {
+            waveSize = waveSizes[0];
+        } 
         enemiesRemaining = waveSize;
         spawnTimer = 0f;
         enemiesSpawned = 0;
+    }
+
+    private void WaveEnd()
+    {
+        LevelController.Instance.EndWave();
     }
 
     private void RecordEnemy(object sender, EnemyEventArgs e)
@@ -47,17 +78,16 @@ public class SpawnBehavior : MonoBehaviour
         enemiesRemaining--;
         if (enemiesRemaining <= 0)
         {
-            StartCoroutine(NextWave());
+            WaveEnd();
         }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        pooler = GetComponent<ObjectPooler>();
+        activePooler = basicPooler;
         pathBehavior = GetComponent<PathBehavior>();
-
-        enemiesRemaining = waveSize;
+        enemiesRemaining = 0;
     }
 
     private void OnEnable()
@@ -75,7 +105,7 @@ public class SpawnBehavior : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(enemiesSpawned < waveSize)
+        if(LevelController.Instance.IsWaveActive && enemiesSpawned < waveSize)
         {
             spawnTimer -= Time.deltaTime;
             if(spawnTimer <= 0)

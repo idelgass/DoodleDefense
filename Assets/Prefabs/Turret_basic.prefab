@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 8688214395966981882}
   - component: {fileID: 3236604898746521797}
   - component: {fileID: 4146473566433759648}
-  - component: {fileID: 535843328358807455}
+  - component: {fileID: 2666796308655093346}
   - component: {fileID: 6169179532711167878}
   - component: {fileID: 770804519651044231}
   m_Layer: 6
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eced21bda86a6a46ab18c5332172fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 4
+  attackRange: 5
 --- !u!114 &4146473566433759648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,9 +499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504c4447c0f8e2d40933d2db1a33d0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2146561041234396295, guid: 364accb2e933dfa4f9f47b1ae888a88e, type: 3}
+  prefab: {fileID: 2146561041234396295, guid: 7f55a67c6b3cd4e06907ba62cf5f4bc0, type: 3}
   poolSize: 10
---- !u!114 &535843328358807455
+--- !u!114 &2666796308655093346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -510,12 +510,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4436814783097341742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d116a7810e6384cd4a8373c5b696af8d, type: 3}
+  m_Script: {fileID: 11500000, guid: ae447e9661f2441f38b7660de923fb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1005667240966413391}
-  attackDelay: 0.25
-  damage: 2
+  attackDelay: 1
+  damage: 5
+  hasSpread: 0
+  spreadAmount: 0
 --- !u!114 &6169179532711167878
 MonoBehaviour:
   m_ObjectHideFlags: 0

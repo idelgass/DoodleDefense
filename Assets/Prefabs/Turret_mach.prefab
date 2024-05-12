@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eced21bda86a6a46ab18c5332172fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
+  attackRange: 7
 --- !u!114 &2786477139750736792
 MonoBehaviour:
   m_ObjectHideFlags: 0
